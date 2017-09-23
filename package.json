@@ -1,0 +1,19 @@
+{
+  "name": "roger-roger",
+  "version": "1.0.0",
+  "description": "Provides a deep clone function for objects",
+  "main": "index.js",
+  "scripts": {
+    "test": "mocha"
+  },
+  "keywords": [
+    "clone",
+    "javascript"
+  ],
+  "author": "Dan Young",
+  "license": "ISC",
+  "devDependencies": {
+    "mocha": "~3.5.3",
+    "chai": "~4.1.2"
+  }
+}
