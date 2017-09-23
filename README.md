@@ -21,5 +21,7 @@ myClone.Star === 'Wars' // true
 ## Limitations
 Doesn't handle `Date` objects, or es6 features like `Class`, `Map`, & `Set`.
 
+Requires Node 6.x+
+
 ## Running tests
 `npm i` to install dependencies, then `npm test`.
