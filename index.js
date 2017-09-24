@@ -19,22 +19,32 @@ function deepClone(object) {
         return returnArray;
     }
 
+    // handle dates as a special case
+    if (object instanceof Date) {
+        const copy = new Date(object.getTime());
+        return copy;
+    }
+
+    // handle regex
+    if (object instanceof RegExp) {
+        const copy = new RegExp(object);
+        return copy;
+    }
+
     // Handle plain objects by iterating through the key/value pairs, calling 'deepClone' on each value
     if (isObject(object)) {
         const returnObject = {};
 
         // go through the object properties
         Object.keys(object).forEach((key) => {
-            if (object.hasOwnProperty(key)) {
-                const value = object[key];
-                returnObject[key] = deepClone(value);
-            }
+            const value = object[key];
+            returnObject[key] = deepClone(value);
         });
 
         return returnObject;
     }
 
-    // If it isn't a primitive, array or object just return as-is
+    // If we haven't managed to handle it, return as-is
     return object;
 }
 

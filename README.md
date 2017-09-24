@@ -19,7 +19,7 @@ myClone.Star === 'Wars' // true
 ```
 
 ## Limitations
-Doesn't handle `Date` objects, or es6 features like `Class`, `Map`, & `Set`.
+Doesn't handle es6 features like `Class`, `Map`, & `Set`.
 
 Requires Node 6.x+
 

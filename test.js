@@ -22,11 +22,11 @@ describe('deepClone', () => {
 
     it('should clone a nested object', () => {
         const objectToTest = {
-           name: 'Paddy',
-           address: {
-               town: 'Lerum',
-               country: 'Sweden'
-           }
+            name: 'Paddy',
+            address: {
+                town: 'Lerum',
+                country: 'Sweden'
+            }
         };
 
         const clonedObject = deepClone(objectToTest);
@@ -122,6 +122,31 @@ describe('deepClone', () => {
         expect(clonedObject.worlds[0]).to.equal('Asgard');
         expect(clonedObject.worlds[1]).to.equal('Midgard');
         expect(clonedObject.worlds[2]).to.equal('Jotunheim');
+    });
+
+    it('should clone an object containing dates', () => {
+        const objectWithDate = {
+            birthday: new Date(1984, 8, 19)
+        };
+
+        const clonedObject = deepClone(objectWithDate);
+
+        expect(clonedObject).to.not.equal(objectWithDate);
+        expect(clonedObject).to.deep.equal(objectWithDate);
+        expect(clonedObject).to.have.property('birthday');
+        expect(clonedObject.birthday.getDay()).to.equal(3) // Wednesday
+    });
+
+    it('should clone an object containing regexs', () => {
+        const objectWithRegex = {
+            email: /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/
+        }
+
+        const clonedObject = deepClone(objectWithRegex);
+
+        expect(clonedObject).to.not.equal(objectWithRegex);
+        expect(clonedObject).to.deep.equal(objectWithRegex);
+        expect(clonedObject.email.test('dan@test.com')).to.equal(true); // Verify that the regex still works
     });
 
     it('should handle complex structures', () => {
